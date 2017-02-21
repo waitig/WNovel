@@ -10,27 +10,53 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <title></title>
-    <meta name="keywords" content="长乐歌,长乐歌吧,三戒大师,长乐歌小说,长乐歌最新章节,长乐歌无弹窗,长乐歌全文阅读,长乐歌免费阅读">
-    <meta name="description" content="百年青史不胜愁，尤记当年长乐侯，满堂花醉三千客，一剑霜寒五十州！人间有病天知否？青山笑我云招手。花前细嗅美人香，月下轻取仇寇头！ 成败恩仇断肠酒，化作长乐歌一首。请君为我倾耳听，与尔共醉千秋后！">
+    <title><?php wp_title();?></title>
+    <meta name="keywords" content="<?php echo waitig_gopt('keywords'); ?>">
+    <meta name="description" content="<?php bloginfo('description'); ?>">
     <meta http-equiv="Cache-Control" content="no-transform ">
     <meta name="robots" content="all">
     <meta property="og:type" content="novel">
-    <meta property="og:title" content="长乐歌">
-    <meta property="og:description" content="百年青史不胜愁，尤记当年长乐侯，满堂花醉三千客，一剑霜寒五十州！人间有病天知否？青山笑我云招手。花前细嗅美人香，月下轻取仇寇头！ 成败恩仇断肠酒，化作长乐歌一首。请君为我倾耳听，与尔共醉千秋后！">
-    <meta property="og:image" content="http://clgxs.com/web/clg.jpg">
-    <meta property="og:novel:category" content="架空历史">
-    <meta property="og:novel:author" content="三戒大师">
-    <meta property="og:novel:book_name" content="长乐歌">
-    <meta property="og:novel:read_url" content="http://clgxs.com">
-    <meta property="og:url" content="http://clgxs.com">
+    <meta property="og:title" content="<?php wp_title();?>">
+    <meta property="og:description" content="<?php bloginfo('description'); ?>">
+    <meta property="og:image" content="<?php echo waitig_gopt('og_image'); ?>">
+    <meta property="og:novel:read_url" content="<?php site_url(); ?>">
+    <meta property="og:url" content="<?php site_url(); ?>">
     <meta property="og:novel:status" content="连载">
-    <link href="/web/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/web/css/style.css" rel="stylesheet">
-    <link href="/web/css/css.css" rel="stylesheet">
-    <script type="text/javascript" src="/web/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/web/js/b.m.js"></script>
-    <script type="text/javascript" src="/web/js/17mbbase.js"></script>
-    <script type="text/javascript" src="/web/js/17mb.js"></script>
+    <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php bloginfo('template_url'); ?>/css/style.css" rel="stylesheet">
+    <link href="<?php bloginfo('template_url'); ?>/css/css.css" rel="stylesheet">
+    <?php wp_head();?>
+    <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/b.m.js"></script>
+    <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/17mbbase.js"></script>
+    <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/17mb.js"></script>
 </head>
+<body>
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only"><?php wp_title();?></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><?php wp_title();?></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="navitem" nav="cat_1" ><a href="/list/1-1.html">玄幻 </a></li>
+                <li class="navitem" nav="cat_2" ><a href="/list/2-1.html">仙侠 </a></li>
+                <li class="navitem" nav="cat_3" ><a href="/list/3-1.html">言情 </a></li>
+                <li class="navitem" nav="cat_4" ><a href="/list/4-1.html">历史 </a></li>
+                <li class="navitem" nav="cat_5" ><a href="/list/5-1.html">网游 </a></li>
+                <li class="navitem" nav="cat_6" ><a href="/list/6-1.html">科幻 </a></li>
+                <li class="navitem" nav="cat_7" ><a href="/list/7-1.html">恐怖 </a></li>
+                <li class="navitem" nav="cat_8" ><a href="/list/8-1.html">其他 </a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
 

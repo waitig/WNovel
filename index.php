@@ -1,1 +1,1 @@
-<?php/** * Created by PhpStorm. * User: lius * Date: 2017/2/20 * Time: 19:48 */
+<?php/** * Created by PhpStorm. * User: lius * Date: 2017/2/20 * Time: 19:48 */get_header();include "content.php";get_footer();

@@ -29,8 +29,25 @@ function footerScript() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'footerScript' );
-
+function deel_strimwidth($str ,$start , $width ,$trimmarker ){
+    $output = preg_replace('/^(?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,'.$start.'}((?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,'.$width.'}).*/s','\1',$str);
+    return $output.$trimmarker;
+}
 function waitig_gopt($e){
 	return stripslashes(get_option($e));
 }
-
+if(waitig_gopt('waitig_remove_head_code'))
+{
+    remove_action( 'wp_head',   'feed_links_extra', 3 );
+    remove_action( 'wp_head',   'rsd_link' );
+    remove_action( 'wp_head',   'wlwmanifest_link' );
+    remove_action( 'wp_head',   'index_rel_link' );
+    remove_action( 'wp_head',   'start_post_rel_link', 10, 0 );
+    remove_action( 'wp_head',   'wp_generator' );
+}
+function googlo_remove_open_sans_from_wp_core() {
+    wp_deregister_style('open-sans');
+    wp_register_style('open-sans', false);
+    wp_enqueue_style('open-sans', '');
+}
+add_action('init', 'googlo_remove_open_sans_from_wp_core');

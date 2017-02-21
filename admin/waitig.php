@@ -42,7 +42,6 @@ function waitig_add_admin_page()
 }
 add_action('admin_menu', 'waitig_add_admin_page');
 function waitig_options_page() {
-    $theme_check=theme_check();
     global $themename, $options,$notice;
     $i=0;
     if ($_REQUEST['update']) echo '<div class="updated"><p><strong>设置已保存。</strong></p></div>';
@@ -302,8 +301,8 @@ function waitig_options_page() {
             display: inline-block;
             padding: 2px;
             border-radius: 50%;
-            background: #e14d43;
-            color: #fff;
+            background: #30e14a;
+            color: #ff0323;
             content: "\f463";
             vertical-align: text-bottom;
             font: 400 18px/1 dashicons;

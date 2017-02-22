@@ -7,20 +7,22 @@
  * Index:http://www.waitig.com
  * Theme:WBetter Theme
  */
-?>
-<?php
 $cat_id=1;
 $right_cat_id=1;
 if(is_category()){
     /*$cat_ids = get_the_category();
 	$cat_id = $cat_ids[0]->cat_ID;*/
-	$cat_id=get_cat_ID( single_cat_title('',false) );
+    $cat_id=get_cat_ID( single_cat_title('',false) );
 }
-else{
+elseif(is_home()){
     $cat_id = waitig_gopt('index_cat_id');
 }
-    ?>
-<?php $right_cat_id = waitig_gopt('right_cat_id');?>
+elseif(is_single()){
+    $categorys = get_the_category();
+    $category = $categorys[0];
+    $cat_id=$category->term_id;
+}
+$right_cat_id = waitig_gopt('right_cat_id');?>
 <div class="container">
 		<?php echo deel_breadcrumbs(); ?>
 	<!--<script>_17mb_pctop();_17mb_waptop();</script>-->

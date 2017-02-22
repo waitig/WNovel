@@ -5,12 +5,35 @@
  * Date: 2017/2/20
  * Time: 19:49
  */
+$cat_id=1;
+$right_cat_id=1;
+if(is_category()){
+    /*$cat_ids = get_the_category();
+	$cat_id = $cat_ids[0]->cat_ID;*/
+    $cat_id=get_cat_ID( single_cat_title('',false) );
+}
+elseif(is_home()){
+    $cat_id = waitig_gopt('index_cat_id');
+}
+elseif(is_single()){
+    $categorys = get_the_category();
+    $category = $categorys[0];
+    $cat_id=$category->term_id;
+}
+$thiscat = get_category($cat_id);
 ?>
 <html lang="zh-CN"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <title><?php wp_title(waitig_gopt('waitig_delimiter'), true, 'right'); echo get_option('blogname'); if (is_home ()) echo waitig_gopt('waitig_delimiter') ,get_option('blogdescription'); if ($paged > 1) echo '-Page ', $paged; ?></title>
+    <title><?php
+        if(is_single()){
+            wp_title();
+        }
+        else{
+            echo $thiscat->name;
+        }
+        echo '_'.$thiscat->name.'最新章节_'.waitig_gopt("ashu_cat_value_".$thiscat->term_id).'新书全文免费阅读_'.get_option('blogname');?></title>
     <meta name="keywords" content="<?php echo waitig_gopt('waitig_keywords'); ?>">
     <meta name="description" content="<?php bloginfo('waitig_description'); ?>">
     <meta http-equiv="Cache-Control" content="no-transform ">

@@ -114,7 +114,7 @@ else{
 				<div class="panel-heading"><?php $thiscat = get_category($cat_id); echo $thiscat ->name;?>全部章节</div>
 				<div class="panel-body">
 					<ul class="list-group list-charts">
-                        <?php query_posts("posts_per_page=-1&cat=".$cat_id)?>
+                        <?php query_posts("posts_per_page=-1&cat=".$cat_id."&order=ASC")?>
                         <?php while (have_posts()) : the_post(); ?>
                         <li><a href="<?php the_permalink() ?>"  target="_blank">
                                 <?php the_title(); ?>

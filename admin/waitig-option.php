@@ -47,6 +47,46 @@ $options = array(
         'type'	=>	'checkbox'
     ),
     array(
+        'name'	=>	'免插件去除category',
+        'desc'	=>	'免插件去除链接中的category',
+        'id'	=>	'waitig_uncategroy_en',
+        'type'	=>	'checkbox'
+    ),
+    array(
+        'name'	=>	'网站导航显示小说数量',
+        'desc'	=>	'导航栏自动扫描网站小说并显示在导航栏，在此定义你想在导航栏显示的小说数量！',
+        'id'	=>	"nav_novel_number",
+        'type'	=>	'number',
+        'std'	=>	'8'
+    ),
+    array(
+        'name'	=>	'网站title分割符',
+        'desc'	=>	'默认为|',
+        'id'	=>	"waitig_delimiter",
+        'type'	=>	'text',
+        'std'	=>	'|'
+    ),
+    array(
+        'type'	=>	'panelend'
+    ),
+    //标签页‘网站设置’结束
+    //
+    //标签页‘个性设置’开始
+    array(
+        'title'	=>	'首页设置',
+        'id'	=>	'personsetting',
+        'type'	=>	'panelstart'
+    ),
+    array(
+        'title' => '网站首页小说情况设置！',
+        'type'  => 'subtitle'
+    ),
+    array(
+        'name'	=>	'您的网站现有分类ID为：',
+        'desc'	=>	Bing_show_category(),
+        'type'	=>	'text_show'
+    ),
+    array(
         'name'	=>	'首页小说ID',
         'desc'	=>	'首页小说ID',
         'id'	=>	"index_cat_id",
@@ -68,8 +108,8 @@ $options = array(
         'std'	=>	'2'
     ),
     array(
-        'name'	=>	'首页小说缩略图',
-        'desc'	=>	'首页小说缩略图',
+        'name'	=>	'右侧小说缩略图',
+        'desc'	=>	'首页右侧精彩推荐小说缩略图',
         'id'	=>	"right_novel_image",
         'type'	=>	'text',
         'std'	=>	''
@@ -80,28 +120,6 @@ $options = array(
         'id'	=>	"bottom_cat_num",
         'type'	=>	'number',
         'std'	=>	'9'
-    ),
-    array(
-        'name'	=>	'网站title分割符',
-        'desc'	=>	'默认为|',
-        'id'	=>	"waitig_delimiter",
-        'type'	=>	'text',
-        'std'	=>	'|'
-    ),
-    array(
-        'type'	=>	'panelend'
-    ),
-    //标签页‘网站设置’结束
-    //
-    //标签页‘个性设置’开始
-    array(
-        'title'	=>	'个性设置',
-        'id'	=>	'personsetting',
-        'type'	=>	'panelstart'
-    ),
-    array(
-        'title' => '丰富的个性话设置，使你的网站更加个性！',
-        'type'  => 'subtitle'
     ),
     array(
         'type'	=>	'panelend'

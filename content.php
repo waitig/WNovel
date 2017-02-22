@@ -9,8 +9,11 @@
  */
 ?>
 <?php
+$cat_id=1;
+$right_cat_id=1;
 if(is_category()){
-    $cat_id= get_the_category()[0]->cat_ID;
+    $cat_ids = get_the_category();
+	$cat_id = $cat_ids[0]->cat_ID;
 }
 else{
     $cat_id = waitig_gopt('index_cat_id');

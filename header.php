@@ -50,7 +50,7 @@
                     'child_of'=> 0,
                     'hide_empty'=> 1,
                     'taxonomy'=> 'category',
-                    'number'=> '8',
+                    'number'=> waitig_gopt('nav_novel_number'),
 
                 );
                 $categories=get_categories($args);

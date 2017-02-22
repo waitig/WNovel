@@ -68,7 +68,6 @@ $right_cat_id = waitig_gopt('right_cat_id');?>
                 <div class="panel-body" >
                     <ul class="list-group list-group-ext">
                         <?php $thiscat = get_category($right_cat_id);?>
-
                         <div class="media" style="border:none;margin-bottom: 0;padding-bottom: 0">
                             <div class="media-left media-heading">
                                 <a href="<?php echo get_category_link( $thiscat->term_id )?>" title='<?php echo $thiscat ->name;?>全文阅读' >
@@ -109,8 +108,7 @@ $right_cat_id = waitig_gopt('right_cat_id');?>
             </div>
         </div>
 	</div>
-
-	<script>_17mb_pcmiddle();_17mb_wapmiddle();</script>
+	<!--<script>_17mb_pcmiddle();_17mb_wapmiddle();</script>-->
 	<div class="row">
 		<div class="col-sm-12 col-md-12">
 			<div class="panel panel-default">

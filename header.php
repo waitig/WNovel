@@ -28,19 +28,19 @@ $thiscat = get_category($cat_id);
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title><?php
         if(is_single()){
-            wp_title();
+            wp_title("");
         }
         else{
             echo $thiscat->name;
         }
         echo '_'.$thiscat->name.'最新章节_'.waitig_gopt("ashu_cat_value_".$thiscat->term_id).'新书全文免费阅读_'.get_option('blogname');?></title>
     <meta name="keywords" content="<?php echo waitig_gopt('waitig_keywords'); ?>">
-    <meta name="description" content="<?php bloginfo('waitig_description'); ?>">
+    <meta name="description" content="<?php echo waitig_gopt('waitig_description'); ?>">
     <meta http-equiv="Cache-Control" content="no-transform ">
     <meta name="robots" content="all">
     <meta property="og:type" content="novel">
     <meta property="og:title" content="<?php wp_title();?>">
-    <meta property="og:description" content="<?php bloginfo('waitig_description'); ?>">
+    <meta property="og:description" content="<?php echo waitig_gopt('waitig_description'); ?>">
     <meta property="og:image" content="<?php echo waitig_gopt('og_image'); ?>">
     <meta property="og:novel:read_url" content="<?php site_url(); ?>">
     <meta property="og:url" content="<?php site_url(); ?>">

@@ -34,7 +34,7 @@ $right_cat_id = waitig_gopt('right_cat_id');?>
 				</div>
 				<div class="pannel-body info">
 					<div class="info1">
-						<img src=":<?php echo waitig_gopt("cat_image_".$thiscat->term_id);?>" height="130" width="100" onerror="this.src='<?php echo waitig_gopt("default_novel_image");?>'" /><br/><br/>
+						<img src=":<?php echo waitig_gopt("cat_image_".$thiscat->term_id);?>" height="130" width="100" onerror="this.src='<?php echo waitig_gopt("cat_image_".$thiscat->term_id);?>'" /><br/><br/>
 						<a href="javascript:;" rel="nofollow"  class="btn btn-danger">推荐本书</a><br/><br/>
 						<a href="javascript:;" class="btn btn-primary">加入书架</a>
 					</div>

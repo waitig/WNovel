@@ -5,41 +5,39 @@
  * Date: 2017/2/20
  * Time: 19:49
  */
-$cat_id=1;
-$right_cat_id=1;
-if(is_category()){
+$cat_id = 1;
+$right_cat_id = 1;
+if (is_category()) {
     /*$cat_ids = get_the_category();
 	$cat_id = $cat_ids[0]->cat_ID;*/
-    $cat_id=get_cat_ID( single_cat_title('',false) );
-}
-elseif(is_home()){
+    $cat_id = get_cat_ID(single_cat_title('', false));
+} elseif (is_home()) {
     $cat_id = waitig_gopt('index_cat_id');
-}
-elseif(is_single()){
+} elseif (is_single()) {
     $categorys = get_the_category();
     $category = $categorys[0];
-    $cat_id=$category->term_id;
+    $cat_id = $category->term_id;
 }
 $thiscat = get_category($cat_id);
 ?>
-<html lang="zh-CN"><head>
+<html lang="zh-CN">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title><?php
-        if(is_single()){
+        if (is_single()) {
             wp_title("");
-        }
-        else{
+        } else {
             echo $thiscat->name;
         }
-        echo '_'.$thiscat->name.'最新章节_'.waitig_gopt("ashu_cat_value_".$thiscat->term_id).'新书全文免费阅读_'.get_option('blogname');?></title>
+        echo '_' . $thiscat->name . '最新章节_' . waitig_gopt("ashu_cat_value_" . $thiscat->term_id) . '新书全文免费阅读_' . get_option('blogname'); ?></title>
     <meta name="keywords" content="<?php echo waitig_gopt('waitig_keywords'); ?>">
     <meta name="description" content="<?php echo waitig_gopt('waitig_description'); ?>">
     <meta http-equiv="Cache-Control" content="no-transform ">
     <meta name="robots" content="all">
     <meta property="og:type" content="novel">
-    <meta property="og:title" content="<?php wp_title();?>">
+    <meta property="og:title" content="<?php wp_title(); ?>">
     <meta property="og:description" content="<?php echo waitig_gopt('waitig_description'); ?>">
     <meta property="og:image" content="<?php echo waitig_gopt('og_image'); ?>">
     <meta property="og:novel:read_url" content="<?php site_url(); ?>">
@@ -48,7 +46,7 @@ $thiscat = get_category($cat_id);
     <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php bloginfo('template_url'); ?>/css/style.css" rel="stylesheet">
     <link href="<?php bloginfo('template_url'); ?>/css/css.css" rel="stylesheet">
-    <?php wp_head();?>
+    <?php wp_head(); ?>
     <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.min.js"></script>
     <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/b.m.js"></script>
     <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/17mbbase.js"></script>
@@ -59,33 +57,53 @@ $thiscat = get_category($cat_id);
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only"><?php bloginfo('name');?></span>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only"><?php bloginfo('name'); ?></span>
             </button>
-            <a class="navbar-brand" href="/"><?php bloginfo('name');?></a>
+            <a class="navbar-brand" href="/"><?php bloginfo('name'); ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav" style="float:right">
-                <?php $args=array(
-                'orderby' => 'name',
-                'order' => 'ASC',
-                    'hierarchical'=>0,
-                    'child_of'=> 0,
-                    'hide_empty'=> 1,
-                    'taxonomy'=> 'category',
-                    'number'=> waitig_gopt('nav_novel_number'),
-
+                <?php $args = array(
+                    'orderby' => 'name',
+                    'order' => 'ASC',
+                    'hierarchical' => 0,
+                    'child_of' => 0,
+                    'hide_empty' => 1,
+                    'taxonomy' => 'category'
                 );
+                $cat_number = 1;
                 $categories=get_categories($args);
-                foreach($categories as $category) {
-                echo '<li class="navitem" nav="cat_'. $category-> slug .'">';
-                    echo ' <a href="' . get_category_link( $category->term_id ) . '" title="' . sprintf( __( "View all posts in %s" ), $category->name ) . '" ' . '>' . $category->name.' </a>';
-                    echo ' </li>';
+                foreach ($categories as $category) {
+                    if ($cat_number <= waitig_gopt('nav_novel_number')) {
+                        echo '<li class="navitem" nav="cat_' . $category->slug . '">';
+                        echo ' <a href="' . get_category_link($category->term_id) . '" title="' . sprintf(__("View all posts in %s"), $category->name) . '" ' . '>' . $category->name . ' </a>';
+                        echo ' </li>';
+                        $cat_number += 1;
+                    }
+                    else{
+                        break;
+                    }
                 }
                 ?>
                 <li class="dropdown">
-                    <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
-                </li>
+                    <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">更多 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <?php
+                        $categories=get_categories($args);
+                        $cat_number = 1;
+                        foreach ($categories as $category) {
+                            //echo $cat_number;
+                            if ($cat_number > waitig_gopt('nav_novel_number')) {
+                                //echo 'aaa';
+                                echo '<li><a href="' . get_category_link($category->term_id) . '" title="' . sprintf(__("View all posts in %s"), $category->name) . '" ' . '>' . $category->name . ' </a></li>';
+                            }
+                            $cat_number += 1;
+                        }
+                        ?>
+                    </ul>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

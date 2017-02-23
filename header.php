@@ -35,10 +35,22 @@ $thiscat = get_category($cat_id);
         }
         echo '_'.$thiscat->name.'最新章节_'.waitig_gopt("cat_author_".$thiscat->term_id).'新书全文免费阅读_'.get_option('blogname');?></title>
     <meta name="keywords" content="
-<?php echo $thiscat->name.','.$thiscat->name.'吧,'.waitig_gopt("cat_author_".$thiscat->term_id).','.$thiscat->name.'小说,'.$thiscat->name.'最新章节,'.$thiscat->name.'无弹窗,'.$thiscat->name.'全文阅读,'.$thiscat->name.'免费阅读';?>
+<?php
+    if(is_home()){
+        echo waitig_gopt('waitig_keywords');
+    }
+    else{
+        echo $thiscat->name.','.$thiscat->name.'吧,'.waitig_gopt("cat_author_".$thiscat->term_id).','.$thiscat->name.'小说,'.$thiscat->name.'最新章节,'.$thiscat->name.'无弹窗,'.$thiscat->name.'全文阅读,'.$thiscat->name.'免费阅读';
+    }?>
 ">
     <meta name="description" content="
-<?php echo $thiscat->name.'是'.waitig_gopt("cat_author_".$thiscat->term_id).'创作的全新精彩小说，'.$thiscat->name.'最新章节来源于互联网网友,'.get_option('blogname').'提供'.$thiscat->name.'全文在线免费阅读，并且无任何弹窗广告。';?>
+<?php
+    if(is_home()){
+    echo waitig_gopt('waitig_description');
+    }
+    else{
+        echo $thiscat->name.'是'.waitig_gopt("cat_author_".$thiscat->term_id).'创作的全新精彩小说，'.$thiscat->name.'最新章节来源于互联网网友,'.get_option('blogname').'提供'.$thiscat->name.'全文在线免费阅读，并且无任何弹窗广告。';
+    }?>
 ">
     <meta http-equiv="Cache-Control" content="no-transform ">
     <meta name="robots" content="all">
@@ -51,8 +63,14 @@ $thiscat = get_category($cat_id);
     }
     echo '_'.$thiscat->name.'最新章节_'.waitig_gopt("cat_author_".$thiscat->term_id).'新书全文免费阅读_'.get_option('blogname');?>">
     <meta property="og:description" content="
-<?php echo $thiscat->name.'是'.waitig_gopt("cat_author_".$thiscat->term_id).'创作的全新精彩小说，'.$thiscat->name.'最新章节来源于互联网网友,'.get_option('blogname').'提供'.$thiscat->name.'全文在线免费阅读，并且无任何弹窗广告。';?>
-
+<?php
+    if(is_home()){
+        echo waitig_gopt('waitig_description');
+    }
+    else{
+        echo $thiscat->name.'是'.waitig_gopt("cat_author_".$thiscat->term_id).'创作的全新精彩小说，'.$thiscat->name.'最新章节来源于互联网网友,'.get_option('blogname').'提供'.$thiscat->name.'全文在线免费阅读，并且无任何弹窗广告。';
+    }
+    ?>
 ">
     <meta property="og:image" content="<?php echo waitig_gopt('og_image'); ?>">
     <meta property="og:novel:read_url" content="<?php bloginfo('url'); ?>">

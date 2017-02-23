@@ -97,26 +97,45 @@ $thiscat = get_category($cat_id);
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav" style="float:right">
-                <?php $args=array(
-                'orderby' => 'name',
-                'order' => 'ASC',
-                    'hierarchical'=>0,
-                    'child_of'=> 0,
-                    'hide_empty'=> 1,
-                    'taxonomy'=> 'category',
-                    'number'=> waitig_gopt('nav_novel_number'),
-
+                <?php $args = array(
+                    'orderby' => 'name',
+                    'order' => 'ASC',
+                    'hierarchical' => 0,
+                    'child_of' => 0,
+                    'hide_empty' => 1,
+                    'taxonomy' => 'category'
                 );
+                $cat_number = 1;
                 $categories=get_categories($args);
-                foreach($categories as $category) {
-                    echo '<li class="navitem" nav="cat_'. $category-> slug .'">';
-                    echo ' <a href="' . get_category_link( $category->term_id ) . '" title="' . sprintf( __( "View all posts in %s" ), $category->name ) . '" ' . '>' . $category->name.' </a>';
-                    echo ' </li>';
+                foreach ($categories as $category) {
+                    if ($cat_number <= waitig_gopt('nav_novel_number')) {
+                        echo '<li class="navitem" nav="cat_' . $category->slug . '">';
+                        echo ' <a href="' . get_category_link($category->term_id) . '" title="' . sprintf(__("View all posts in %s"), $category->name) . '" ' . '>' . $category->name . ' </a>';
+                        echo ' </li>';
+                        $cat_number += 1;
+                    }
+                    else{
+                        break;
+                    }
                 }
                 ?>
                 <li class="dropdown">
-                    <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
-                </li>
+                    <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">更多 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <?php
+                        $categories=get_categories($args);
+                        $cat_number = 1;
+                        foreach ($categories as $category) {
+                            //echo $cat_number;
+                            if ($cat_number > waitig_gopt('nav_novel_number')) {
+                                //echo 'aaa';
+                                echo '<li><a href="' . get_category_link($category->term_id) . '" title="' . sprintf(__("View all posts in %s"), $category->name) . '" ' . '>' . $category->name . ' </a></li>';
+                            }
+                            $cat_number += 1;
+                        }
+                        ?>
+                    </ul>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

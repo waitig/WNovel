@@ -9,8 +9,12 @@
  */
 ?>
 <?php
+$cat_id=1;
+$right_cat_id=1;
 if(is_category()){
-    $cat_id= get_the_category()[0]->cat_ID;
+    /*$cat_ids = get_the_category();
+	$cat_id = $cat_ids[0]->cat_ID;*/
+	$cat_id=get_cat_ID( single_cat_title('',false) );
 }
 else{
     $cat_id = waitig_gopt('index_cat_id');
@@ -34,7 +38,7 @@ else{
 					</div>
 					<div class="info2">
 						<h1 class="text-center"><?php $thiscat = get_category($cat_id); echo $thiscat ->name;?></h1>
-						<h3 class="text-center">作者:网友投稿</h3>
+						<h3 class="text-center">作者:<?php echo waitig_gopt('ashu_cat_value_'.$thiscat->term_id);?></h3>
 						<div>
 							<p>关于<?php $thiscat = get_category($cat_id); echo $thiscat ->name;?>：&nbsp;&nbsp;&nbsp;<?php echo $thiscat ->description;?></p>
 						</div>
@@ -111,7 +115,7 @@ else{
 				<div class="panel-heading"><?php $thiscat = get_category($cat_id); echo $thiscat ->name;?>全部章节</div>
 				<div class="panel-body">
 					<ul class="list-group list-charts">
-                        <?php query_posts("posts_per_page=-1&cat=".$cat_id)?>
+                        <?php query_posts("posts_per_page=-1&cat=".$cat_id."&order=ASC")?>
                         <?php while (have_posts()) : the_post(); ?>
                         <li><a href="<?php the_permalink() ?>"  target="_blank">
                                 <?php the_title(); ?>

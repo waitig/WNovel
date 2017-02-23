@@ -7,20 +7,22 @@
  * Index:http://www.waitig.com
  * Theme:WBetter Theme
  */
-?>
-<?php
 $cat_id=1;
 $right_cat_id=1;
 if(is_category()){
     /*$cat_ids = get_the_category();
 	$cat_id = $cat_ids[0]->cat_ID;*/
-	$cat_id=get_cat_ID( single_cat_title('',false) );
+    $cat_id=get_cat_ID( single_cat_title('',false) );
 }
-else{
+elseif(is_home()){
     $cat_id = waitig_gopt('index_cat_id');
 }
-    ?>
-<?php $right_cat_id = waitig_gopt('right_cat_id');?>
+elseif(is_single()){
+    $categorys = get_the_category();
+    $category = $categorys[0];
+    $cat_id=$category->term_id;
+}
+$right_cat_id = waitig_gopt('right_cat_id');?>
 <div class="container">
 		<?php echo deel_breadcrumbs(); ?>
 	<!--<script>_17mb_pctop();_17mb_waptop();</script>-->
@@ -32,13 +34,13 @@ else{
 				</div>
 				<div class="pannel-body info">
 					<div class="info1">
-						<img src="<?php echo waitig_gopt('index_novel_image'); ?>" height="130" width="100" onerror="this.src='<?php echo waitig_gopt('index_novel_image'); ?>'" /><br/><br/>
+						<img src=":<?php echo waitig_gopt("cat_image_".$thiscat->term_id);?>" height="130" width="100" onerror="this.src='<?php echo waitig_gopt("default_novel_image");?>'" /><br/><br/>
 						<a href="javascript:;" rel="nofollow"  class="btn btn-danger">推荐本书</a><br/><br/>
 						<a href="javascript:;" class="btn btn-primary">加入书架</a>
 					</div>
 					<div class="info2">
 						<h1 class="text-center"><?php $thiscat = get_category($cat_id); echo $thiscat ->name;?></h1>
-						<h3 class="text-center">作者:<?php echo waitig_gopt('ashu_cat_value_'.$thiscat->term_id);?></h3>
+						<h3 class="text-center">作者:<?php echo waitig_gopt("cat_author_".$thiscat->term_id);?></h3>
 						<div>
 							<p>关于<?php $thiscat = get_category($cat_id); echo $thiscat ->name;?>：&nbsp;&nbsp;&nbsp;<?php echo $thiscat ->description;?></p>
 						</div>
@@ -66,7 +68,6 @@ else{
                 <div class="panel-body" >
                     <ul class="list-group list-group-ext">
                         <?php $thiscat = get_category($right_cat_id);?>
-
                         <div class="media" style="border:none;margin-bottom: 0;padding-bottom: 0">
                             <div class="media-left media-heading">
                                 <a href="<?php echo get_category_link( $thiscat->term_id )?>" title='<?php echo $thiscat ->name;?>全文阅读' >
@@ -107,8 +108,7 @@ else{
             </div>
         </div>
 	</div>
-
-	<script>_17mb_pcmiddle();_17mb_wapmiddle();</script>
+	<!--<script>_17mb_pcmiddle();_17mb_wapmiddle();</script>-->
 	<div class="row">
 		<div class="col-sm-12 col-md-12">
 			<div class="panel panel-default">

@@ -5,22 +5,76 @@
  * Date: 2017/2/20
  * Time: 19:49
  */
+$cat_id=1;
+$right_cat_id=1;
+if(is_category()){
+    /*$cat_ids = get_the_category();
+	$cat_id = $cat_ids[0]->cat_ID;*/
+    $cat_id=get_cat_ID( single_cat_title('',false) );
+}
+elseif(is_home()){
+    $cat_id = waitig_gopt('index_cat_id');
+}
+elseif(is_single()){
+    $categorys = get_the_category();
+    $category = $categorys[0];
+    $cat_id=$category->term_id;
+}
+$thiscat = get_category($cat_id);
 ?>
 <html lang="zh-CN"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <title><?php wp_title(waitig_gopt('waitig_delimiter'), true, 'right'); echo get_option('blogname'); if (is_home ()) echo waitig_gopt('waitig_delimiter') ,get_option('blogdescription'); if ($paged > 1) echo '-Page ', $paged; ?></title>
-    <meta name="keywords" content="<?php echo waitig_gopt('waitig_keywords'); ?>">
-    <meta name="description" content="<?php bloginfo('waitig_description'); ?>">
+    <title><?php
+        if(is_single()){
+            wp_title("");
+        }
+        else{
+            echo $thiscat->name;
+        }
+        echo '_'.$thiscat->name.'最新章节_'.waitig_gopt("cat_author_".$thiscat->term_id).'新书全文免费阅读_'.get_option('blogname');?></title>
+    <meta name="keywords" content="
+<?php
+    if(is_home()){
+        echo waitig_gopt('waitig_keywords');
+    }
+    else{
+        echo $thiscat->name.','.$thiscat->name.'吧,'.waitig_gopt("cat_author_".$thiscat->term_id).','.$thiscat->name.'小说,'.$thiscat->name.'最新章节,'.$thiscat->name.'无弹窗,'.$thiscat->name.'全文阅读,'.$thiscat->name.'免费阅读';
+    }?>
+">
+    <meta name="description" content="
+<?php
+    if(is_home()){
+    echo waitig_gopt('waitig_description');
+    }
+    else{
+        echo $thiscat->name.'是'.waitig_gopt("cat_author_".$thiscat->term_id).'创作的全新精彩小说，'.$thiscat->name.'最新章节来源于互联网网友,'.get_option('blogname').'提供'.$thiscat->name.'全文在线免费阅读，并且无任何弹窗广告。';
+    }?>
+">
     <meta http-equiv="Cache-Control" content="no-transform ">
     <meta name="robots" content="all">
     <meta property="og:type" content="novel">
-    <meta property="og:title" content="<?php wp_title();?>">
-    <meta property="og:description" content="<?php bloginfo('waitig_description'); ?>">
+    <meta property="og:title" content="<?php if(is_single()){
+        wp_title("");
+    }
+    else{
+        echo $thiscat->name;
+    }
+    echo '_'.$thiscat->name.'最新章节_'.waitig_gopt("cat_author_".$thiscat->term_id).'新书全文免费阅读_'.get_option('blogname');?>">
+    <meta property="og:description" content="
+<?php
+    if(is_home()){
+        echo waitig_gopt('waitig_description');
+    }
+    else{
+        echo $thiscat->name.'是'.waitig_gopt("cat_author_".$thiscat->term_id).'创作的全新精彩小说，'.$thiscat->name.'最新章节来源于互联网网友,'.get_option('blogname').'提供'.$thiscat->name.'全文在线免费阅读，并且无任何弹窗广告。';
+    }
+    ?>
+">
     <meta property="og:image" content="<?php echo waitig_gopt('og_image'); ?>">
-    <meta property="og:novel:read_url" content="<?php site_url(); ?>">
-    <meta property="og:url" content="<?php site_url(); ?>">
+    <meta property="og:novel:read_url" content="<?php bloginfo('url'); ?>">
+    <meta property="og:url" content="<?php bloginfo('url'); ?>">
     <meta property="og:novel:status" content="连载">
     <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php bloginfo('template_url'); ?>/css/style.css" rel="stylesheet">
@@ -55,7 +109,7 @@
                 );
                 $categories=get_categories($args);
                 foreach($categories as $category) {
-                echo '<li class="navitem" nav="cat_'. $category-> slug .'">';
+                    echo '<li class="navitem" nav="cat_'. $category-> slug .'">';
                     echo ' <a href="' . get_category_link( $category->term_id ) . '" title="' . sprintf( __( "View all posts in %s" ), $category->name ) . '" ' . '>' . $category->name.' </a>';
                     echo ' </li>';
                 }

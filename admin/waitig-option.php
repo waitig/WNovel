@@ -34,6 +34,13 @@ $options = array(
         'std'   => ''//选项的默认值，选填
     ),
     array(
+        'name'  => '网站缩略图',//选项显示的文字，选填
+        'desc'  => '网站og:image标签图片地址',//选项显示的一段描述文字，选填
+        'id'    => "og_image",//选项的id，必须是唯一，后面根据这个获取值，必填
+        'type'  => 'text',//种类，这个是普通的文字输入，必填
+        'std'   => ''//选项的默认值，选填
+    ),
+    array(
         'name'	=>	'title分隔符',
         'desc'	=>	'显示在浏览器标题栏用来分割网站名字的符号',
         'id'	=>	'waitig_delimiter',
@@ -114,6 +121,13 @@ $options = array(
         'type'	=>	'text',
         'std'	=>	''
     ),//
+    array(
+        'name'	=>	'小说默认缩略图',
+        'desc'	=>	'小说默认缩略图地址',
+        'id'	=>	"default_novel_image",
+        'type'	=>	'text',
+        'std'	=>	''
+    ),
     array(
         'name'	=>	'底部为你推荐显示小说数',
         'desc'	=>	'为你推荐显示小说的数量',

@@ -11,7 +11,6 @@ $prev_post = get_previous_post($current_category,'');//与当前文章同分类�
 $next_post = get_next_post($current_category,'');//与当前文章同分类的下一篇文章
 ?>
 <script type="text/javascript">
-
     var pre = '<?php if (!empty( $prev_post )):
         echo get_permalink( $prev_post->ID );
         endif; ?>';
@@ -31,7 +30,6 @@ $next_post = get_next_post($current_category,'');//与当前文章同分类的�
     function scrollwindow() {
         window.scrollBy(0, 1);
     }
-
     $(function () {
         document.onmousedown = sc;
         document.ondblclick = initialize;

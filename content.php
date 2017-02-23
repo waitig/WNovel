@@ -34,13 +34,13 @@ $right_cat_id = waitig_gopt('right_cat_id');?>
 				</div>
 				<div class="pannel-body info">
 					<div class="info1">
-						<img src="<?php echo waitig_gopt('index_novel_image'); ?>" height="130" width="100" onerror="this.src='<?php echo waitig_gopt('index_novel_image'); ?>'" /><br/><br/>
+						<img src=":<?php echo waitig_gopt("cat_image_".$thiscat->term_id);?>" height="130" width="100" onerror="this.src='<?php echo waitig_gopt("cat_image_".$thiscat->term_id);?>'" /><br/><br/>
 						<a href="javascript:;" rel="nofollow"  class="btn btn-danger">推荐本书</a><br/><br/>
 						<a href="javascript:;" class="btn btn-primary">加入书架</a>
 					</div>
 					<div class="info2">
 						<h1 class="text-center"><?php $thiscat = get_category($cat_id); echo $thiscat ->name;?></h1>
-						<h3 class="text-center">作者:<?php echo waitig_gopt('ashu_cat_value_'.$thiscat->term_id);?></h3>
+						<h3 class="text-center">作者:<?php echo waitig_gopt("cat_author_".$thiscat->term_id);?></h3>
 						<div>
 							<p>关于<?php $thiscat = get_category($cat_id); echo $thiscat ->name;?>：&nbsp;&nbsp;&nbsp;<?php echo $thiscat ->description;?></p>
 						</div>

@@ -134,30 +134,48 @@ if (waitig_gopt('waitig_uncategroy_en')){
 //分类参数
 function ashu_add_cat_field(){
     echo '<div class="form-field">';
-    echo '<label for="ashu_cat_value" >分类作者</label>';
-    echo '<input type="text" size="" value="" id="ashu_cat_value" name="ashu_cat_value"/>';
+    echo '<label for="cat_author" >分类作者</label>';
+    echo '<input type="text" size="" value="" id="cat_author" name="cat_author"/>';
     echo '<p>请输入本分类作者</p>';
+    echo '</div>';
+    echo '<div class="form-field">';
+    echo '<label for="cat_image" >分类图片</label>';
+    echo '<input type="text" size="" value="" id="cat_image" name="cat_image"/>';
+    echo '<p>请输入本分类图片链接地址</p>';
     echo '</div>';
 }
 add_action('category_add_form_fields','ashu_add_cat_field', 10, 2);
 
 //分类再编辑需要接受参数
 function ashu_edit_cat_field($tag){
-    echo '<tr><th>分类作者</th><td><input type="text" size="40" value="'.get_option('ashu_cat_value_'.$tag->term_id).'" id="ashu_cat_value" name="ashu_cat_value"/>请输入本分类作者</td></tr>';
+    echo '<tr><th>分类作者</th><td><input type="text" size="40" value="'.get_option('cat_author_'.$tag->term_id).'" id="cat_author" name="cat_author"/>请输入本分类作者</td></tr>';
+    echo '<tr><th>分类图片地址</th><td><input type="text" size="40" value="'.get_option('cat_image_'.$tag->term_id).'" id="cat_image" name="cat_image"/>请输入本分类图片链接地址</td></tr>';
+
+
 }
 add_action('category_edit_form_fields','ashu_edit_cat_field', 10, 2);
 
 
 /**************保存数据接受的参数为分类ID*****************/
 function ashu_taxonomy_metadata($term_id){
-    if(isset($_POST['ashu_cat_value'])){
+    if(isset($_POST['cat_author'])){
         //判断权限--可改
         if(!current_user_can('manage_categories')){
             return $term_id ;
         }
 
-        $data = $_POST['ashu_cat_value'];
-        $key = 'ashu_cat_value_'.$term_id; //选项名为 ashu_cat_value_1 类型
+        $data = $_POST['cat_author'];
+        $key = 'cat_author_'.$term_id; //选项名为 ashu_cat_value_1 类型
+        update_option( $key, $data ); //更新选项值
+    }
+    if(isset($_POST['cat_image'])){
+        //判断权限--可改
+        if(!current_user_can('manage_categories')){
+            return $term_id ;
+        }
+
+        $data = $_POST['cat_image'];
+        $key = 'cat_image_'.$term_id; //选项名为 ashu_cat_value_1 类型
         update_option( $key, $data ); //更新选项值
     }
 }

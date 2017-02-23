@@ -122,6 +122,13 @@ $options = array(
         'std'	=>	''
     ),//
     array(
+        'name'	=>	'小说默认缩略图',
+        'desc'	=>	'小说默认缩略图地址',
+        'id'	=>	"default_novel_image",
+        'type'	=>	'text',
+        'std'	=>	''
+    ),
+    array(
         'name'	=>	'底部为你推荐显示小说数',
         'desc'	=>	'为你推荐显示小说的数量',
         'id'	=>	"bottom_cat_num",

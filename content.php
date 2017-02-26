@@ -71,7 +71,7 @@ $right_cat_id = waitig_gopt('right_cat_id');?>
                         <div class="media" style="border:none;margin-bottom: 0;padding-bottom: 0">
                             <div class="media-left media-heading">
                                 <a href="<?php echo get_category_link( $thiscat->term_id )?>" title='<?php echo $thiscat ->name;?>全文阅读' >
-                                    <img title='<?php echo $thiscat ->name;?>全文阅读' src="<?php waitig_gopt('right_novel_image');?>" class="img" width="90" height="110" />
+                                    <img title='<?php echo $thiscat ->name;?>全文阅读' src="<?php echo waitig_gopt('right_novel_image');?>" class="img" width="90" height="110" />
                                 </a>
                             </div>
                             <div class="media-body">

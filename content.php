@@ -42,7 +42,7 @@ $right_cat_id = waitig_gopt('right_cat_id');?>
 						<h1 class="text-center"><?php $thiscat = get_category($cat_id); echo $thiscat ->name;?></h1>
 						<h3 class="text-center">作者:<?php echo waitig_gopt("cat_author_".$thiscat->term_id);?></h3>
 						<div>
-							<p>关于<?php $thiscat = get_category($cat_id); echo $thiscat ->name;?>：&nbsp;&nbsp;&nbsp;<?php echo $thiscat ->description;?></p>
+							<p><!--关于--><?php /*$thiscat = get_category($cat_id); echo $thiscat ->name;：*/?>&nbsp;&nbsp;&nbsp;<?php echo $thiscat ->description;?></p>
 						</div>
 					</div>
 					<div style="clear:both"></div>

@@ -9,6 +9,8 @@ get_header();
 $current_category = get_the_category();//获取当前文章所属分类ID
 $prev_post = get_previous_post($current_category,'');//与当前文章同分类的上一篇文章
 $next_post = get_next_post($current_category,'');//与当前文章同分类的下一篇文章
+$category = $current_category[0];
+$cat_id=$category->term_id;
 ?>
 <script type="text/javascript">
     var pre = '<?php if (!empty( $prev_post )):
@@ -71,7 +73,7 @@ $next_post = get_next_post($current_category,'');//与当前文章同分类的�
 					<li class="previous"><a class="btn btn-info" href="<?php if (!empty( $prev_post )):
                             echo get_permalink( $prev_post->ID );
                         endif; ?>">上一章</a></li>
-					<li><a class="btn btn-info" href="/">返回目录</a></li>
+					<li><a class="btn btn-info" href="<?php echo get_category_link( $category->term_id )?>">返回目录</a></li>
 					<li class="next"><a class="btn btn-info" href="<?php if (!empty( $next_post )){
                             echo get_permalink( $next_post->ID );
                         }

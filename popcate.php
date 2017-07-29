@@ -20,7 +20,8 @@
                     'child_of'=> 0,
                     'hide_empty'=> 1,
                     'taxonomy'=> 'category',
-                    'number'=> waitig_gopt('bottom_cat_num')
+                    'number'=> waitig_gopt('bottom_cat_num'),
+                    'exclude' => waitig_gopt('index_pop_except_id')
 
                 );
                 $categories=get_categories($args);
@@ -28,10 +29,18 @@
                 foreach($categories as $category) {
                     ?>
                     <li>
-                        <a href="<?php echo get_category_link( $category->term_id )?>" title='<?php echo $category->name;?>全文阅读' ><?php echo $category->name;?>            </a>
+                        <a href="<?php echo get_category_link( $category->term_id )?>" title='<?php echo $category->name;?>全文阅读' ><?php echo $category->name;?>(<?php echo waitig_gopt("cat_author_".$category->term_id);?>)            </a>
                     </li>
                 <?php } ?>
             </ul>
         </div>
+    </div>
+    <div>
+        <?php if(wp_is_mobile()){
+            echo waitig_gopt('waitig_ad_popcate_mobile');
+        }
+        else{
+            echo waitig_gopt('waitig_ad_popcate_pc');
+        }?>
     </div>
 </div>

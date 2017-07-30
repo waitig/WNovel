@@ -72,7 +72,7 @@ function waitig_options_page()
     if ($_REQUEST['reset']) echo '<div class="updated"><p><strong>设置已重置。</strong></p></div>';
     ?>
     <div class="wrap d_wrap" id="waitig_theme_option_div">
-        <?php $theme_check = theme_check($themename); ?>
+        <?php $theme_check = theme_check(); ?>
         <h2><?php echo $themename; ?>主题选项</h2><input placeholder="筛选主题选项…" type="search" id="theme-options-search"/>
         <div class="d_formwrap">
             <div class="d_alter_w">
@@ -94,7 +94,9 @@ function waitig_options_page()
                     }
                     ?>
                 </div>
+                <div class="clear"></div>
             </div>
+            <div class="clear"></div>
             <form method="post">
                 <h2 id="nav_tap_wrapper">
                     <?php
@@ -331,18 +333,44 @@ function waitig_options_page()
             </form>
             <form method="post">
                 <p>
-                    <input name="reset" type="submit" class="button button-secondary" value="重置选项"
+                    <input id="waitig_reset_btn" name="reset" type="submit" class="button button-primary" value="重置选项"
                            onclick="return confirm('你确定要重置选项吗？重置之后您的全部设置将被清空! ');"/>
                     <input type="hidden" name="action" value="reset"/>
                 </p>
             </form>
+            <div class="clear"></div>
         </div>
+        <div class="clear"></div>
     </div>
+    <div class="clear"></div>
     <style>
+        #waitig_save_btn {
+            margin-left: 52%;
+            width: 10%;
+            background-color: rgb(33, 150, 243);
+            color: #fff;
+        }
+        #waitig_reset_btn{
+            position: fixed;
+            bottom: 10px;
+            width: 10%;
+            left: 20%;
+            background-color: #E91E63;
+            color: #fff;
+        }
+
+        .submit {
+            position: fixed;
+            bottom: 0;
+            padding: 10px;
+            margin-bottom: 0px;
+            width: 100%;
+            background: rgba(204, 204, 204, 0.62);
+        }
+
         .d_alter_w {
             display: inline;
             /*float: right;*/
-            height: 100%;
             width: 29%;
             margin-top: 10px;
             position: absolute;
@@ -532,14 +560,11 @@ function waitig_options_page()
                         wrap.removeClass("searching");
                         themeOptionsFilter.text("");
                     }
-                    ;
                 });
             }
-            ;
         });
     </script>
     <?php
-
 }
 
 //启用主题后自动跳转至选项页面
@@ -595,8 +620,8 @@ function waitig_pointer_print_scripts()
             $("#collapse-menu").click(function () {
                 $menuAppearance.pointer("reposition");
             });
-
         });
+    </script>
     <?php
 }
 

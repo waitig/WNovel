@@ -69,7 +69,7 @@ function Bing_show_category()
     $request .= " ORDER BY term_id asc";
     $categorys = $wpdb->get_results($request);
     foreach ($categorys as $category) { //调用菜单
-        $output .= $category->name . "=(&nbsp;" . $category->term_id . '&nbsp;),&nbsp;&nbsp;';
+        $output .= $category->name . "&nbsp;&nbsp;[&nbsp" . $category->term_id . '&nbsp;]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 
     }
     return $output;

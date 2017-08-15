@@ -107,11 +107,11 @@ if (waitig_gopt('waitig_uncategroy_en')) {
         $category_rewrite = array();
         $categories = get_categories(array(
             'hide_empty' => false
-            ));
+        ));
         foreach ($categories as $category) {
             $category_nicename = $category->slug;
             if ($category->parent == $category->cat_ID) // recursive recursion
-            $category->parent = 0;
+                $category->parent = 0;
             elseif ($category->parent != 0) $category_nicename = get_category_parents($category->parent, false, '/', true) . $category_nicename;
             $category_rewrite['(' . $category_nicename . ')/(?:feed/)?(feed|rdf|rss|rss2|atom)/?$'] = 'index.php?category_name=$matches[1]&feed=$matches[2]';
             $category_rewrite['(' . $category_nicename . ')/page/?([0-9]{1,})/?$'] = 'index.php?category_name=$matches[1]&paged=$matches[2]';
@@ -203,6 +203,7 @@ function ashu_edit_cat_field($tag)
     echo "<script type='application/javascript' src='$themeDir/js/wnovel.js'></script>";
     wp_enqueue_media();//加载媒体中心
 }
+
 add_action('category_edit_form_fields', 'ashu_edit_cat_field', 10, 2);
 
 if (function_exists(theme_check) == null) {
@@ -263,6 +264,7 @@ function ashu_taxonomy_metadata($term_id)
         update_option($key, $data); //更新选项值
     }
 }
+
 /*******虽然要两个钩子，但是我们可以两个钩子使用同一个函数********/
 add_action('created_category', 'ashu_taxonomy_metadata', 10, 1);
 add_action('edited_category', 'ashu_taxonomy_metadata', 10, 1);
@@ -278,7 +280,7 @@ function hide_admin_bar($flag)
 //主题自动更新
 if (!waitig_gopt('waitig_updates_un')):
     require 'updates.php';
-$example_update_checker = new ThemeUpdateChecker('WNovel', 'http://www.waitig.com/themes/WNovel/info.json'
+    $example_update_checker = new ThemeUpdateChecker('WNovel', 'http://www.waitig.com/themes/WNovel/info.json'
     //此处链接不可改
     );
 endif;
@@ -303,7 +305,7 @@ function get_alert()
 //注册菜单
 register_nav_menus(array(
     'header_menu' => __('顶部全站菜单')
-    ));
+));
 
 
 /**
@@ -314,11 +316,13 @@ register_nav_menus(array(
 require_once 'wp-bootstrap-navwalker.php';
 
 add_action('admin_menu', 'register_my_custom_submenu_page');
-function register_my_custom_submenu_page() {
-    add_submenu_page( 'waitig.php', '主题使用手册', '主题使用手册', 'manage_options', 'my-custom-submenu-page', 'my_custom_submenu_page_callback');
+function register_my_custom_submenu_page()
+{
+    add_submenu_page('waitig.php', '主题使用手册', '主题使用手册', 'manage_options', 'my-custom-submenu-page', 'my_custom_submenu_page_callback');
 }
 
-function my_custom_submenu_page_callback() {
+function my_custom_submenu_page_callback()
+{
     echo '<iframe src="https://www.waitig.com/wnovel-theme-user-manual.html" width="100%"  height="800px" frameborder="0"></iframe>';
 }
 

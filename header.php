@@ -55,7 +55,7 @@ if (is_home()) {
 $baseUrl = str_replace('', '/', dirname($_SERVER['SCRIPT_NAME']));
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="zh-CN">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -158,7 +158,7 @@ $baseUrl = str_replace('', '/', dirname($_SERVER['SCRIPT_NAME']));
                         </ul>
                 </ul>
             </div><!--/.nav-collapse -->
-        <?php
+            <?php
         } else {
             wp_nav_menu(array(
                     'menu' => '',

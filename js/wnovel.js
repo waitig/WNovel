@@ -55,7 +55,7 @@ function darker() {
        $(".alert-warning").css({"background-color":'#ecf0f1'});
        $(".panel-default").css({"color":'#666666'});
        $(".list-charts li").css({"border-bottom":'1px solid #ddd'});
-       sessionStorage.setItem('md', 'day');
+        sessionStorage.setItem('md', 'day');
     }
     else{
         $("body").css({"background-color":'rgb(6, 23, 37)'});

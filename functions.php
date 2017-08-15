@@ -154,15 +154,15 @@ function ashu_add_cat_field()
 {
     global $themeDir;
     echo '<div class="form-field">';
-    echo '<label for="cat_author" >分类作者</label>';
+    echo '<label for="cat_author" >小说作者</label>';
     echo '<input type="text" size="" value="" id="cat_author" name="cat_author"/>';
-    echo '<p>请输入本分类作者</p>';
+    echo '<p>请输入本小说作者</p>';
     echo '</div>';
     echo '<div class="form-field">';
-    echo '<label for="cat_image" >分类图片</label>';
+    echo '<label for="cat_image" >小说图片</label>';
     echo '<input type="text" size="" value="" id="cat_image" name="cat_image" style="width:80%"/>';
     echo '<input type="button" class="button button-primary" onclick="insertImage_cat()" value="上传图片"/>';
-    echo '<p>请输入本分类图片链接地址</p>';
+    echo '<p>请输入本小说图片链接地址</p>';
     echo '<br/>';
     echo '<img id="img_cat_image" style="max-width:80%;" src="">';
     echo '</div>';
@@ -192,8 +192,8 @@ add_action('category_add_form_fields', 'ashu_add_cat_field', 10, 2);
 function ashu_edit_cat_field($tag)
 {
     global $themeDir;
-    echo '<tr class="form-field"><th>分类作者</th><td><input type="text" size="40" value="' . get_option('cat_author_' . $tag->term_id) . '" id="cat_author" name="cat_author"/><p class="description">请输入本分类作者</p></td></tr>';
-    echo '<tr><th>分类图片地址</th><td><input type="text" style="width:60%" size="40" value="' . get_option('cat_image_' . $tag->term_id) . '" id="cat_image" name="cat_image"/><input type="button" class="button button-primary" onclick="insertImage_cat()" value="上传图片"/>&nbsp;&nbsp;&nbsp;&nbsp;请输入本分类图片链接地址';
+    echo '<tr class="form-field"><th>小说作者</th><td><input type="text" size="40" value="' . get_option('cat_author_' . $tag->term_id) . '" id="cat_author" name="cat_author"/><p class="description">请输入本小说作者</p></td></tr>';
+    echo '<tr><th>小说图片地址</th><td><input type="text" style="width:60%" size="40" value="' . get_option('cat_image_' . $tag->term_id) . '" id="cat_image" name="cat_image"/><input type="button" class="button button-primary" onclick="insertImage_cat()" value="上传图片"/>&nbsp;&nbsp;&nbsp;&nbsp;请输入本小说图片链接地址';
     echo '<p class="description"><img style="max-width:80%" id="img_cat_image" src="' . get_option('cat_image_' . $tag->term_id) . '"/></p>';
     echo '</td></tr>';
     echo '<tr class="form-field"><th>本小说的作品相关内容</th><td><textarea type="textarea" rows="5" cols="40" class="large-text code" value="" id="cat_novel_about" name="cat_novel_about"/>' . stripslashes(get_option('cat_novel_about_' . $tag->term_id)) . '</textarea><br/>请输入作品相关</td></tr>';

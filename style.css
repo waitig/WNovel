@@ -692,7 +692,7 @@ li {
 #scroll {
     position: fixed;
     right: 50px;
-    bottom: 50px;
+    bottom: 50%;
     text-align: center;
 }
 

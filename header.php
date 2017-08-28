@@ -59,26 +59,26 @@ $baseUrl = str_replace('', '/', dirname($_SERVER['SCRIPT_NAME']));
 <html lang="zh-CN">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <title><?=$title?></title>
-    <meta name="keywords" content="<?=$keyWords?>">
-    <meta name="description" content="<?=$description?>">
-    <meta name="applicable-device" content="pc,mobile">
+    <meta name="keywords" content="<?=$keyWords?>"/>
+    <meta name="description" content="<?=$description?>"/>
+    <meta name="applicable-device" content="pc,mobile"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <meta http-equiv="Cache-Control" content="no-transform"/>
-    <meta property="og:type" content="novel">
-    <meta property="og:title" content="<?=$thiscat->name?>">
-    <meta property="og:description" content="<?=$thiscat->description?>">
-    <meta property="og:image" content="<?=waitig_gopt("cat_image_" . $thiscat->term_id)?>">
-    <meta property="og:url" content="<?=get_category_link($thiscat->term_id) ?>">
-    <meta property="og:novel:status" content="连载">
+    <meta property="og:type" content="novel"/>
+    <meta property="og:title" content="<?=$thiscat->name?>"/>
+    <meta property="og:description" content="<?=$thiscat->description?>"/>
+    <meta property="og:image" content="<?=waitig_gopt("cat_image_" . $thiscat->term_id)?>"/>
+    <meta property="og:url" content="<?=get_category_link($thiscat->term_id) ?>"/>
+    <meta property="og:novel:status" content="连载"/>
     <meta property="og:novel:author" content="<?=waitig_gopt("cat_author_" . $thiscat->term_id)?>"/>
     <meta property="og:novel:book_name" content="<?=$thiscat->name?>"/>
-    <meta property="og:novel:read_url" content="<?=get_category_link($thiscat->term_id)?>">
+    <meta property="og:novel:read_url" content="<?=get_category_link($thiscat->term_id)?>"/>
     <?php query_posts("posts_per_page=1&cat=" . $thiscat->term_id) ?>
     <?php while (have_posts()) : the_post(); ?>
-        <meta property="og:novel:update_time" content="<?=the_time('Y-m-d')?>"/>
+        <meta property="og:novel:update_time" content="<?=the_time('Y-m-d H:i')?>"/>
         <meta property="og:novel:latest_chapter_name" content="<?=the_title()?>"/>
         <meta property="og:novel:latest_chapter_url" content="<?=the_permalink()?>"/>
     <?php endwhile;

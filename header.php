@@ -64,8 +64,7 @@ $baseUrl = str_replace('', '/', dirname($_SERVER['SCRIPT_NAME']));
     <title><?=$title?></title>
     <meta name="keywords" content="<?=$keyWords?>">
     <meta name="description" content="<?=$description?>">
-    <meta http-equiv="mobile-agent" content="format=html5; url=<?php echo waitig_gopt('waitig_murl') . $baseUrl; ?>">
-    <meta http-equiv="mobile-agent" content="format=xhtml; url=<?php echo waitig_gopt('waitig_murl') . $baseUrl; ?>">
+    <meta name="applicable-device" content="pc,mobile">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <meta http-equiv="Cache-Control" content="no-transform"/>
     <meta property="og:type" content="novel">

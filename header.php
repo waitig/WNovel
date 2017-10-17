@@ -93,6 +93,9 @@ $baseUrl = str_replace('', '/', dirname($_SERVER['SCRIPT_NAME']));
     <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/b.m.js"></script>
     <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/wnovel.js"></script>
     <?php echo waitig_gopt('waitig_head_code'); ?>
+    <style type="text/css">
+        <?=getStyles()?>
+    </style>
 </head>
 <body style="background-color: rgb(255, 255, 255);">
 <!-- Fixed navbar -->

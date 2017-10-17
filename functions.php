@@ -326,3 +326,8 @@ function my_custom_submenu_page_callback()
     echo '<iframe src="https://www.waitig.com/wnovel-theme-user-manual.html" width="100%"  height="800px" frameborder="0"></iframe>';
 }
 
+function getStyles(){
+    $defaultColor = waitig_gopt('waitig_main_color');
+    $style = ".panel-default>.panel-heading {background-color: $defaultColor;} .navbar-default {background-color: $defaultColor;}";
+    return $style;
+}

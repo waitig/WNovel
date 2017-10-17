@@ -30,7 +30,7 @@ $options = array(
         'name' => '网站描述',
         'desc' => '用简洁的文字描述您的站点，字数建议在120个字以内',
         'id' => "waitig_description",
-        'type' => 'text',
+        'type' => 'textarea',
         'std' => ''
     ),
     array(
@@ -53,6 +53,13 @@ $options = array(
         'id' => "waitig_og_image",//选项的id，必须是唯一，后面根据这个获取值，必填
         'type' => 'images',//种类，这个是普通的文字输入，必填
         'std' => ''//选项的默认值，选填
+    ),
+    array(
+        'name' => '网站主色调',//选项显示的文字，选填
+        'desc' => '网站的主色调,请输入颜色代码，参考：#1ABC9C(淡雅绿),#3e3d43(深邃黑),#e0e262(魔力黄)',//选项显示的一段描述文字，选填
+        'id' => "waitig_main_color",//选项的id，必须是唯一，后面根据这个获取值，必填
+        'type' => 'smalltext',//种类，这个是普通的文字输入，必填
+        'std' => '#1ABC9C'//选项的默认值，选填
     ),
     array(
         'name' => '去除头部多余代码',

@@ -15,7 +15,7 @@ function deel_breadcrumbs()
     $categorys = get_the_category();
     $category = $categorys[0];
 
-    return '<ol class="breadcrumb"><li><a title="返回首页" href="' . get_bloginfo('url') . '"></a> </li><li> ' . get_category_parents($category->term_id, true, ' </li><li> ') . '<li class="active">' . get_the_title() . '</li></ol>';
+    return '<ol class="breadcrumb"><li><a title="返回首页" href="' . get_bloginfo('url') . '">'.get_option('blogname').'</a> </li><li> ' . get_category_parents($category->term_id, true, ' </li><li> ') . '<li class="active">' . get_the_title() . '</li></ol>';
 }
 
 // 取消原有jQuery

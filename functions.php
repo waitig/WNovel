@@ -7,8 +7,10 @@
  */
 $dname = 'WNovel';
 $themename = 'WNovel';
+define('THEMEVERSION','2.0.1');
 $themeDir = get_stylesheet_directory_uri();
 include('admin/waitig.php');
+require_once 'inc/whtml.php';
 function deel_breadcrumbs()
 {
     if (!is_single()) return false;
@@ -17,7 +19,17 @@ function deel_breadcrumbs()
 
     return '<ol class="breadcrumb"><li><a title="返回首页" href="' . get_bloginfo('url') . '">'.get_option('blogname').'</a> </li><li> ' . get_category_parents($category->term_id, true, ' </li><li> ') . '<li class="active">' . get_the_title() . '</li></ol>';
 }
-
+/**
+ * 日志函数
+ * @param $data
+ */
+function waitig_logs($data){
+    if(constant('WP_DEBUG')==true){
+        $file = constant('ABSPATH').'/logs.txt';
+        $contant = date('Y-m-d H:i:s').' ['.$_SERVER["REQUEST_URI"].']:'.$data ."\n";
+        file_put_contents($file,$contant,FILE_APPEND);
+    }
+}
 // 取消原有jQuery
 function footerScript()
 {
@@ -25,7 +37,7 @@ function footerScript()
         wp_deregister_script('jquery');
         wp_register_script('jquery', '//libs.baidu.com/jquery/1.8.3/jquery.min.js', false, '1.0');
         wp_enqueue_script('jquery');
-        wp_register_style('style', get_template_directory_uri() . '/style.css', false, '1.10');
+        wp_register_style('style', get_template_directory_uri() . '/style.css', false, THEMEVERSION);
         wp_enqueue_style('style');
     }
 }
@@ -61,17 +73,31 @@ add_action('init', 'googlo_remove_open_sans_from_wp_core');
 //获取所有站点分类id
 function Bing_show_category()
 {
-    global $wpdb;
-    $output = '';
-    $request = "SELECT $wpdb->terms.term_id, name FROM $wpdb->terms ";
-    $request .= " LEFT JOIN $wpdb->term_taxonomy ON $wpdb->term_taxonomy.term_id = $wpdb->terms.term_id ";
-    $request .= " WHERE $wpdb->term_taxonomy.taxonomy = 'category' ";
-    $request .= " ORDER BY term_id asc";
-    $categorys = $wpdb->get_results($request);
-    foreach ($categorys as $category) { //调用菜单
-        $output .= $category->name . "&nbsp;&nbsp;[&nbsp" . $category->term_id . '&nbsp;]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+    $args = array(
+        'type' => 'post',
+        'child_of' => 0,
+        'parent' => '0',
+        'orderby' => 'ID',
+        'order' => 'ASC',
+        'hide_empty' => 0,
+        'hierarchical' => 0,
+        'exclude' => '1',
+        'include' => '',
+        'number' => '',
+        'taxonomy' => 'category',
+        'pad_counts' => false);
+    $categorys = get_categories($args);
+    $output = '<table><tbody><tr style="padding:5px;">';
 
+    $num = 1;
+    foreach ($categorys as $category) { //调用菜单
+        $output .= '<td style="padding:5px;">'.$category->name . "&nbsp;&nbsp;[&nbsp" . $category->term_id . '&nbsp;]</td>';
+        if($num%4==0){
+            $output.='</tr><tr style="padding:5px;">';
+        }
+        $num+=1;
     }
+    $output.='</tr></tbody></table>';
     return $output;
 }
 
@@ -330,4 +356,55 @@ function getStyles(){
     $defaultColor = waitig_gopt('waitig_main_color');
     $style = ".panel-default>.panel-heading {background-color: $defaultColor;} .navbar-default {background-color: $defaultColor;}";
     return $style;
+}
+function change_post_menu_label()
+{
+    global $menu;
+    global $submenu;
+    $menu[5][0] = '小说管理';
+    $submenu['edit.php'][5][0] = '小说章节管理';
+    $submenu['edit.php'][10][0] = '新增小说章节';
+    $submenu['edit.php'][15][0] = '小说管理'; // Change name for categories
+    $submenu['edit.php'][16][0] = ''; // Change name for tags
+    echo '';
+}
+
+function change_post_object_label()
+{
+    global $wp_post_types;
+    $labels = &$wp_post_types['post']->labels;
+    $labels->name = 'Contacts';
+    $labels->singular_name = 'Contact';
+    $labels->add_new = 'Add Contact';
+    $labels->add_new_item = 'Add Contact';
+    $labels->edit_item = 'Edit Contacts';
+    $labels->new_item = 'Contact';
+    $labels->view_item = 'View Contact';
+    $labels->search_items = 'Search Contacts';
+    $labels->not_found = 'No Contacts found';
+    $labels->not_found_in_trash = 'No Contacts found in Trash';
+}
+
+//add_action( 'init', 'change_post_object_label' );
+add_action('admin_menu', 'change_post_menu_label');
+
+/*获取根分类的id*/
+function get_category_root_id($cat)
+{
+    $this_category = get_category($cat); // 取得当前分类
+    while ($this_category->category_parent) // 若当前分类有上级分类时，循环
+    {
+        $this_category = get_category($this_category->category_parent); // 将当前分类设为上级分类（往上爬）
+    }
+    return $this_category->term_id; // 返回根分类的id号
+}
+/*获取根分类的id*/
+function get_root_category($cat)
+{
+    $this_category = get_category($cat->term_id); // 取得当前分类
+    while ($this_category->category_parent) // 若当前分类有上级分类时，循环
+    {
+        $this_category = get_category($this_category->category_parent); // 将当前分类设为上级分类（往上爬）
+    }
+    return $this_category; // 返回根分类的id号
 }

@@ -170,6 +170,68 @@ $options = array(
     array(
         'type' => 'panelend'
     ),
+    //标签页‘首页设置’开始
+    array(
+        'title' => 'SEO设置',
+        'id' => 'SEOsetting',
+        'type' => 'panelstart'
+    ),
+    array(
+        'title' => '网站SEO情况设置！',
+        'type' => 'subtitle'
+    ),
+    array(
+        'name' => '小说页SEO标题格式',
+        'desc' => '小说页面SEO标题格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者<br/>'
+            . '示例：{{cat_name}}({{cat_auth}})_起点小说_{{cat_name}}最新章节_{{cat_auth}}新书全文免费阅读_{{blog_name}}',
+        'id' => "waitig_novel_seo_title",
+        'type' => 'textarea',
+        'std' => '{{cat_name}}({{cat_auth}})_起点小说_{{cat_name}}最新章节_{{cat_auth}}新书全文免费阅读_{{blog_name}}'
+    ),
+    array(
+        'name' => '小说页SEO关键词格式',
+        'desc' => '小说页面SEO关键词格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者<br/>'
+            . '示例：{{cat_name}},{{cat_name}}起点,{{cat_name}}小说,{{cat_name}}最新章节,{{cat_name}}免费阅读,{{cat_name}}全文阅读,{{cat_auth}},{{cat_name}}吧',
+        'id' => "waitig_novel_seo_keywords",
+        'type' => 'textarea',
+        'std' => '{{cat_name}},{{cat_name}}起点,{{cat_name}}小说,{{cat_name}}最新章节,{{cat_name}}免费阅读,{{cat_name}}全文阅读,{{cat_auth}},{{cat_name}}吧'
+    ),
+    array(
+        'name' => '小说页SEO描述格式',
+        'desc' => '小说页面SEO描述格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者<br/>'
+            . '示例：{{cat_name}}是{{cat_auth}}创作的全新精彩小说，{{cat_name}}最新章节来源于互联网网友,{{blog_name}}提供{{cat_name}}全文在线免费阅读，并且无任何弹窗广告。',
+        'id' => "waitig_novel_seo_desc",
+        'type' => 'textarea',
+        'std' => '{{cat_name}}是{{cat_name}}创作的全新精彩小说，{{cat_name}}最新章节来源于互联网网友,{{blog_name}}提供重燃全文在线免费阅读，并且无任何弹窗广告。'
+    ),
+    array(
+        'name' => '章节阅读页SEO标题格式',
+        'desc' => '章节阅读页面SEO标题格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者,{{post_title}}-章节名称<br/>'
+            . '示例：{{cat_name}}-{{post_title}}_{{cat_name}}最新章节',
+        'id' => "waitig_post_seo_title",
+        'type' => 'textarea',
+        'std' => '{{cat_name}}-{{post_title}}_{{cat_name}}最新章节'
+    ),
+    array(
+        'name' => '章节阅读页SEO关键词格式',
+        'desc' => '章节阅读页面SEO关键词格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者,{{post_title}}-章节名称<br/>'
+            . '示例：{{cat_name}},{{cat_name}}起点,{{cat_name}}小说,{{cat_name}}最新章节,{{cat_name}}免费阅读,{{cat_name}}全文阅读,{{cat_auth}},{{cat_name}}吧',
+        'id' => "waitig_post_seo_keywords",
+        'type' => 'textarea',
+        'std' => '{{cat_name}},{{cat_name}}起点,{{cat_name}}小说,{{cat_name}}最新章节,{{cat_name}}免费阅读,{{cat_name}}全文阅读,{{cat_auth}},{{cat_name}}吧'
+    ),
+    array(
+        'name' => '章节阅读页SEO描述格式',
+        'desc' => '章节阅读页面SEO描述格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者,{{post_title}}-章节名称<br/>'
+            . '示例：{{cat_name}}是{{cat_auth}}创作的全新精彩小说，{{cat_name}}最新章节来源于互联网网友,{{blog_name}}提供{{cat_name}}全文在线免费阅读，并且无任何弹窗广告。',
+        'id' => "waitig_post_seo_desc",
+        'type' => 'textarea',
+        'std' => '{{cat_name}}是{{cat_name}}创作的全新精彩小说，{{cat_name}}最新章节来源于互联网网友,{{blog_name}}提供重燃全文在线免费阅读，并且无任何弹窗广告。'
+    ),
+    array(
+        'type' => 'panelend'
+    ),
+    //标签页‘网站设置’结束
     //标签页‘其他设置’开始
     array(
         'title' => '其他设置',
@@ -272,6 +334,75 @@ $options = array(
         'desc' => '广告HTML代码，支持js',
         'id' => 'waitig_ad_single3_mobile',
         'type' => 'textarea'
+    ),
+    array(
+        'type' => 'panelend'
+    ),
+    //标签页‘缓存设置’开始
+    array(
+        'title' => '缓存设置',
+        'id' => 'CacheSetting',
+        'type' => 'panelstart'
+    ),
+    array(
+        'title' => '本主题内置纯静态HTML缓存功能，在此页设置静态缓存功能！',
+        'type' => 'subtitle'
+    ),
+    array(
+        'name' => '静态缓存使用说明：',
+        'desc' => '1、请在服务器设置中，将主页的index.html页面优先级排到index.php之前。<br/>'
+            . '2、请在【设置】-【固定链接】设置中设置合适的伪静态规则，文章页面以html结尾。推荐的伪静态规则：/book/%post_id%.html<br/>'
+            . '3、小说页面链接请设置为英文，且不要以 wp- 开头，否则后果自负！<br/>'
+            . '4、请尽量不要使用删除全部文章页缓存的功能，因为如果你网站的文章量很大，则此功能会消耗比较大的服务器资源。<br/>'
+            . '5、只有以游客身份浏览页面时才会触发缓存，管理员访问未缓存的界面不会触发缓存操作。<br/>',
+        'type' => 'text_show'
+    ),
+    array(
+        'name' => '开启纯静态HTML缓存',
+        'desc' => '缓存为纯静态HTML页面',
+        'id' => 'waitig_Cache_on',
+        'type' => 'checkbox'
+    ),
+    array(
+        'name' => '开启首页缓存',
+        'desc' => '是否缓存首页',
+        'id' => 'waitig_Cache_index_on',
+        'type' => 'checkbox'
+    ),
+    array(
+        'name' => '开启小说页缓存',
+        'desc' => '是否缓存小说页面',
+        'id' => 'waitig_Cache_cate_on',
+        'type' => 'checkbox'
+    ),
+    array(
+        'name' => '开启页面缓存',
+        'desc' => '是否缓存自定义页面',
+        'id' => 'waitig_Cache_page_on',
+        'type' => 'checkbox'
+    ),
+    array(
+        'name' => '删除文章缓存',
+        'desc' => '请输入要删除缓存的文章(页面)ID或者文章(页面)名称，留空则代表删除全部文章页缓存<br/>'
+            . "<a href='#' class='button-primary' rel='nofollow' onclick='delHtmlCache(\"" . $blogUrl . "/index.php\",\"1\")'>删除缓存</a>"
+            . '<br/><span style="color:red" id="waitig_Cache_Del_span"></span>'
+            . "<script type='application/javascript' src='$themeDir/js/wnovel.js'></script>",
+        'id' => 'waitig_Cache_Del_id',
+        'type' => 'text'
+    ),
+    array(
+        'name' => '删除小说页缓存',
+        'desc' => '请输入要删除缓存的小说ID，留空则代表删除全部小说页缓存  '
+            . "<a href='#' class='button-primary' rel='nofollow' onclick='delHtmlCache(\"" . $blogUrl . "/index.php\",\"2\")'>删除缓存</a>"
+            . '<br/><span style="color:red" id="waitig_Cache_Del_Cate_span"></span>'
+            . "<script type='application/javascript' src='$themeDir/js/wnovel.js'></script>",
+        'id' => 'waitig_Cache_Del_cate_id',
+        'type' => 'number'
+    ),
+    array(
+        'name' => '您的网站现有小说ID为：',
+        'desc' => Bing_show_category(),
+        'type' => 'text_show'
     ),
     array(
         'type' => 'panelend'

@@ -1,10 +1,10 @@
 /*
 Theme Name:WNovel主题
-Theme URL:http://waitig.com/
-Description:欢迎使用WNovel主题，主题更新地址：<a href="http://waitig.com/">等英博客</a>
+Theme URL:https://waitig.com/
+Description:欢迎使用WNovel主题，主题更新地址：<a href="https://waitig.com/">等英博客</a>
 Author:waitig
-Author URI:http://waitig.com/
-Version:1.2.7
+Author URI:https://waitig.com/
+Version:2.0.1
 */
 body {
     overflow-x: hidden;
@@ -259,6 +259,95 @@ a {
         padding: 3px 6px;
     }
 }
+
+.item-img {
+    width: 49%;
+    padding: 8px 1% 8px 0;
+    height: 139px;
+    float: left;
+    overflow: hidden;
+}
+.item-img img {
+    float: left;
+    width: 108px;
+    height: 133px;
+    padding: 2px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    display: inline;
+}
+.item-img h2 {
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.item-img h2 a {
+    color: #1abc9c;
+}
+.item-img p {
+    line-height: 20px;
+    color: gray;
+    overflow: hidden;
+}
+.item-qb li {
+    width: 33.3%;
+    float: left;
+    color: gray;
+    line-height: 32px;
+    border-bottom: 1px dotted #ddd;
+    overflow: hidden;
+
+}
+.item-qb-auth{
+
+}
+.item-qb-container{
+
+}
+.item-qb-desc{
+
+    line-height:16px;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+
+}
+.item-qb-desc p{
+    word-wrap: break-word;
+    word-break: normal;
+}
+.item-qb-img{
+    float: left;
+    padding: 10px 10px 0 10px;
+}
+.item-qb-img img{
+    height: 160px;
+    width: 120px;
+}
+.item-qb-title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+    font-size: 20px;
+    white-space: nowrap;
+
+}
+.item-qb-title a{
+    color: #1abc9c;;
+}
+.item-qb-title a:hover{
+    color: #e8434c;
+}
+.not {
+    float:left;
+    padding: 5px 10px;
+    line-height: 24px;
+    font-family: "宋体",Arial,Helvetica;
+    color: #666;
+}
+
 
 .list-group-item {
     position: relative;

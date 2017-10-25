@@ -88,3 +88,34 @@ function insertImage_cat(value_id) {
     });
     ashu_upload_frame.open();
 }
+function delHtmlCache(homeUrl,type) {
+    if(confirm('你确定要删除此缓存吗？')){
+        var cache_id = '';
+        if(type==='1'){
+            cache_id = $("#waitig_Cache_Del_id").val();
+        }
+        else{
+            cache_id = $("#waitig_Cache_Del_cate_id").val();
+        }
+
+        $.ajax({
+            url:homeUrl,
+            data:{"htmlCacheDelbt":type,"cache_id":cache_id},
+            type:'post',
+            success:function(result){
+                if(type==='1'){
+                    $("#waitig_Cache_Del_span").html(result);
+                    $("#waitig_Cache_Del_id").val('');
+                }
+                else{
+                    $("#waitig_Cache_Del_Cate_span").html(result);
+                    $("#waitig_Cache_Del_cate_id").val('');
+                }
+            },
+            error:function(msg){
+                alert("连接网络失败");
+            }
+        });
+    }
+    return false;
+}

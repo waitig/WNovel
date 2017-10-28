@@ -27,7 +27,7 @@ $themeUrl = get_template_directory_uri();
                                     'parent' => '0',
                                     'orderby' => 'ID',
                                     'order' => 'DESC',
-                                    'hide_empty' => 0,
+                                    'hide_empty' => 1,
                                     'hierarchical' => 0,
                                     'exclude' => '1',
                                     'include' => '',
@@ -62,6 +62,7 @@ $themeUrl = get_template_directory_uri();
                                     </li>
                                 <?php }
                                 ?>
+                                <div class="clear"></div>
                             </ul>
                         </div>
                     </div>

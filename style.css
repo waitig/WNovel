@@ -220,6 +220,17 @@ a {
         width: 100px !important;
     }
 
+    .list-charts li {
+        width:100% !important;
+    }
+    .item-qb li {
+        width: 100% !important;
+        line-height: 25px;
+    }
+    .item-qb{
+        padding-left:0;
+    }
+
     .imgAuto {
         width: 90px;
         height: 120px;

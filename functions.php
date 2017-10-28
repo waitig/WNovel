@@ -35,7 +35,7 @@ function footerScript()
 {
     if (!is_admin()) {
         wp_deregister_script('jquery');
-        wp_register_script('jquery', '//libs.baidu.com/jquery/1.8.3/jquery.min.js', false, '1.0');
+        //wp_register_script('jquery', '//libs.baidu.com/jquery/1.8.3/jquery.min.js', false, '1.0');
         wp_enqueue_script('jquery');
         wp_register_style('style', get_template_directory_uri() . '/style.css', false, THEMEVERSION);
         wp_enqueue_style('style');

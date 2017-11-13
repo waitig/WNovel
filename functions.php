@@ -7,7 +7,7 @@
  */
 $dname = 'WNovel';
 $themename = 'WNovel';
-define('THEMEVERSION','2.0.1');
+define('THEMEVERSION','2.1.0');
 $themeDir = get_stylesheet_directory_uri();
 include('admin/waitig.php');
 require_once 'inc/whtml.php';

@@ -810,3 +810,15 @@ li {
     height: 25px;
     width: 25px;
 }
+
+/**分页*/
+.pagination{
+    width: 100%;
+    padding-top:10px;
+    text-align: center;
+    margin:auto;
+}
+.pagination li{
+    display:inline;
+    padding:2px 3px;
+}

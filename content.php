@@ -68,7 +68,7 @@ $right_cat_id = waitig_gopt('right_cat_id'); ?>
                 </div>
 
                 <div class="panel-body text-center info3">
-                    <p>小说类别：科幻小说 / 写作状态：连载中</p>
+                    <p>小说类别：<?= waitig_gopt('cat_Cate_'.$cat_id)?> / 写作状态：<?= waitig_gopt('cat_status_'.$cat_id)?></p>
                     <p>最新章节：<?php query_posts("posts_per_page=1&cat=" . $cat_id) ?>
                         <?php while (have_posts()) :
                         the_post(); ?>
@@ -195,14 +195,45 @@ $right_cat_id = waitig_gopt('right_cat_id'); ?>
                 </div>
                 <div class="panel-body">
                     <ul class="list-group list-charts">
-                        <?php query_posts("posts_per_page=-1&cat=" . $cat_id . "&order=ASC") ?>
-                        <?php while (have_posts()) : the_post(); ?>
+                        <?php
+                        //首先处理分页
+                        $offset = 0;
+                        $numberPosts = -1;
+                        $totalPage = 1;
+                        if (waitig_gopt('waitig_post_paged_on')) {
+                            global $paged;
+                            $total = $thiscat->count;
+                            $numberPosts = waitig_gopt('waitig_post_paged_num');
+                            $totalPage = ceil($total / $numberPosts);
+                            if ($paged) {
+                                $offset = ($paged - 1) * $numberPosts;
+                            }
+                        }
+
+                        //判断文章列表页排序规则
+                        $waitig_post_list_order = waitig_gopt('waitig_post_list_order');
+
+                        //仿采集字段
+                        $antiSP = date('Y-m-d-H:i:s');
+
+                        query_posts("posts_per_page=".$numberPosts."&offset=".$offset."&cat=" . $cat_id . "&order=".$waitig_post_list_order) ?>
+                        <?php
+                        while (have_posts()) :
+                            the_post();
+                        ?>
                             <li><a href="<?php the_permalink() ?>" target="_blank">
                                     <?php the_title(); ?>
                                 </a></li>
                         <?php endwhile;
                         wp_reset_query(); ?>
                     </ul>
+
+                    <div class="clear"></div>
+                    <?php
+                    if (waitig_gopt('waitig_post_paged_on')) {
+                        deel_paging($totalPage);
+                    }
+                    ?>
                 </div>
             </div>
             <div>

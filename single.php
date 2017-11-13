@@ -73,13 +73,17 @@ $cat_id = $category->term_id;
                     <div class="chaptera">
                         <div class="clearfix"></div>
                     </div>
-                    <div class="panel-body content-body content-ext">&nbsp;&nbsp;&nbsp;&nbsp;<p>一秒记住本站域名【<a
-                                    href="<?php bloginfo('url'); ?>" target="_blank"
-                                    title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a> <?php bloginfo('url'); ?>
-                            】，为您提供 <a href="<?php echo get_category_link($category->term_id); ?>" target="_blank"
-                                      title="<?php echo $category->name; ?>"><?php echo $category->name; ?></a>
-                            小说最新章节阅读！</p>
-                        <?php the_content(); ?>
+                    <div class="panel-body content-body content-ext" id="BookText">
+                        <?php
+                        $content = waitig_gopt('waitig_post_begin_code').get_the_content().waitig_gopt('waitig_post_end_code');
+                        if(waitig_gopt('waitig_post_anti_spider_on')){
+                            echo waitig_gopt('waitig_post_anti_spider_text');
+                            $content = unicode_encode($content,'UTF-8',false,'-',';');
+                        }
+                        else{
+                            echo $content;
+                        }
+                        ?>
                     </div>
                 </div>
                 <div>
@@ -119,4 +123,9 @@ $cat_id = $category->term_id;
             <?php include "popcate.php"; ?>
             <?php include "flink.php"; ?>
         </div>
+        <script type="text/javascript">
+            <?php if(waitig_gopt('waitig_post_anti_spider_on')) {
+                echo "atsp('$content');";
+            }?>
+        </script>
 <?php get_footer();

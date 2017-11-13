@@ -62,6 +62,42 @@ $options = array(
         'std' => '#1ABC9C'//选项的默认值，选填
     ),
     array(
+        'name' => '文章列表排序规则',
+        'desc' => '选择您的文章列表排序规则【正序】或【倒序】',
+        'id' => "waitig_post_list_order",
+        'type' => 'radio',
+        'options' => array(
+            '正序' => 'ASC',
+            '倒序' => 'DESC',
+        ),
+        'std' => 'waitig_post_list_order_asc'
+    ),
+    array(
+        'name' => '是否开启小说章节分页',
+        'desc' => '开启',
+        'id' => 'waitig_post_paged_on',
+        'type'=>'checkbox'
+    ),
+    array(
+        'name' => '每个分页显示文章数',
+        'desc' => '每个分页显示的文章数量',
+        'id' => "waitig_post_paged_num",
+        'type' => 'number',
+        'std' => '50'
+    ),
+    array(
+        'name' => '是否开启文章阅读页仿采集',
+        'desc' => '开启后，也会影响搜索引擎对文章内容的爬取',
+        'id' => 'waitig_post_anti_spider_on',
+        'type'=>'checkbox'
+    ),
+    array(
+        'name' => '开启文章阅读页仿采集文字',
+        'desc' => '开启后，采集者只会采集到这些文字',
+        'id' => 'waitig_post_anti_spider_text',
+        'type' => 'textarea'
+    ),
+    array(
         'name' => '去除头部多余代码',
         'desc' => '如果不用wlw发布博客，则建议开启',
         'id' => 'waitig_remove_head_code',
@@ -241,6 +277,18 @@ $options = array(
     array(
         'title' => '网站其他情况设置！',
         'type' => 'subtitle'
+    ),
+    array(
+        'name' => '文章开头代码',
+        'desc' => '文章开头代码，可以写版权说明等,也可以放广告代码，支持HTML',
+        'id' => 'waitig_post_begin_code',
+        'type' => 'textarea'
+    ),
+    array(
+        'name' => '文章结尾代码',
+        'desc' => '文章结尾代码，可以写版权说明等,也可以放广告代码，支持HTML',
+        'id' => 'waitig_post_end_code',
+        'type' => 'textarea'
     ),
     array(
         'name' => '网站友情链接',

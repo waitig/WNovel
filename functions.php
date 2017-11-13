@@ -185,6 +185,16 @@ function ashu_add_cat_field()
     echo '<p>请输入本小说作者</p>';
     echo '</div>';
     echo '<div class="form-field">';
+    echo '<label for="cat_Cate" >小说类别</label>';
+    echo '<input type="text" size="" value="" id="cat_Cate" name="cat_Cate"/>';
+    echo '<p>请输入本小说类别，如：玄幻、言情等</p>';
+    echo '</div>';
+    echo '<div class="form-field">';
+    echo '<label for="cat_status" >小说状态</label>';
+    echo '<input type="text" size="" value="" id="cat_status" name="cat_status"/>';
+    echo '<p>请输入本小说状态，连载中或者已完结</p>';
+    echo '</div>';
+    echo '<div class="form-field">';
     echo '<label for="cat_image" >小说图片</label>';
     echo '<input type="text" size="" value="" id="cat_image" name="cat_image" style="width:80%"/>';
     echo '<input type="button" class="button button-primary" onclick="insertImage_cat()" value="上传图片"/>';
@@ -219,6 +229,8 @@ function ashu_edit_cat_field($tag)
 {
     global $themeDir;
     echo '<tr class="form-field"><th>小说作者</th><td><input type="text" size="40" value="' . get_option('cat_author_' . $tag->term_id) . '" id="cat_author" name="cat_author"/><p class="description">请输入本小说作者</p></td></tr>';
+    echo '<tr class="form-field"><th>小说类别</th><td><input type="text" size="40" value="' . get_option('cat_Cate_' . $tag->term_id) . '" id="cat_Cate" name="cat_Cate"/><p class="description">请输入本小说类别，如：玄幻、言情等</p></td></tr>';
+    echo '<tr class="form-field"><th>小说状态</th><td><input type="text" size="40" value="' . get_option('cat_status_' . $tag->term_id) . '" id="cat_status" name="cat_status"/><p class="description">请输入本小说状态，连载中或者已完结</p></td></tr>';
     echo '<tr><th>小说图片地址</th><td><input type="text" style="width:60%" size="40" value="' . get_option('cat_image_' . $tag->term_id) . '" id="cat_image" name="cat_image"/><input type="button" class="button button-primary" onclick="insertImage_cat()" value="上传图片"/>&nbsp;&nbsp;&nbsp;&nbsp;请输入本小说图片链接地址';
     echo '<p class="description"><img style="max-width:80%" id="img_cat_image" src="' . get_option('cat_image_' . $tag->term_id) . '"/></p>';
     echo '</td></tr>';
@@ -247,6 +259,26 @@ function ashu_taxonomy_metadata($term_id)
 
         $data = $_POST['cat_author'];
         $key = 'cat_author_' . $term_id; //选项名为 ashu_cat_value_1 类型
+        update_option($key, $data); //更新选项值
+    }
+    if (isset($_POST['cat_Cate'])) {
+        //判断权限--可改
+        if (!current_user_can('manage_categories')) {
+            return $term_id;
+        }
+
+        $data = $_POST['cat_Cate'];
+        $key = 'cat_Cate_' . $term_id; //选项名为 ashu_cat_value_1 类型
+        update_option($key, $data); //更新选项值
+    }
+    if (isset($_POST['cat_status'])) {
+        //判断权限--可改
+        if (!current_user_can('manage_categories')) {
+            return $term_id;
+        }
+
+        $data = $_POST['cat_status'];
+        $key = 'cat_status_' . $term_id; //选项名为 ashu_cat_value_1 类型
         update_option($key, $data); //更新选项值
     }
     if (isset($_POST['cat_image'])) {
@@ -408,3 +440,104 @@ function get_root_category($cat)
     }
     return $this_category; // 返回根分类的id号
 }
+
+/**
+ * 汉字转Unicode编码，只转汉字
+ * @param string $str 原始汉字的字符串
+ * @param string $encoding 原始汉字的编码
+ * @param bool|boot $ishex 是否为十六进制表示（支持十六进制和十进制）
+ * @param string $prefix 编码后的前缀
+ * @param string $postfix 编码后的后缀
+ * @return string
+ */
+function unicode_encode($str, $encoding = 'UTF-8', $ishex = false, $prefix = '&#', $postfix = ';') {
+    $str = iconv($encoding, 'UCS-2', $str);
+    $arrstr = str_split($str, 2);
+    $unistr = '';
+    for($i = 0, $len = count($arrstr); $i < $len; $i++) {
+        $dec = $ishex ? bin2hex($arrstr[$i]) : hexdec(bin2hex($arrstr[$i]));
+        $unistr .= $prefix . $dec . $postfix;
+    }
+    /*$unistr = '';
+    for ($i = 0; $i < strlen($str) - 1; $i = $i + 2)
+    {
+        $c = $str[$i];
+        $c2 = $str[$i + 1];
+        if (ord($c) > 0)
+        {    // 两个字节的文字
+            $commStr = $c.$c2;
+            $dec = $ishex ? bin2hex($commStr) : hexdec(bin2hex($commStr));
+            $unistr .= $prefix . $dec . $postfix;
+            //$unistr .= $prefix.base_convert(ord($c), 10, 16).base_convert(ord($c2), 10, 16).$postfix;
+        }
+        else
+        {
+            $unistr .= $c2;
+        }
+    }*/
+    return $unistr;
+}
+
+
+/**
+ * Unicode编码转汉字
+ * @param $unistr
+ * @param string $encoding
+ * @param bool|boot $ishex 是否为十六进制表示（支持十六进制和十进制）
+ * @param string $prefix 编码后的前缀
+ * @param string $postfix 编码后的后缀
+ * @return string
+ * @internal param string $str Unicode编码的字符串
+ * @internal param string $decoding 原始汉字的编码
+ */
+function unicode_decode($unistr, $encoding = 'UTF-8', $ishex = false, $prefix = '&#', $postfix = ';')
+{
+    $arruni = explode($prefix, $unistr);
+    $unistr = '';
+    for ($i = 1, $len = count($arruni); $i < $len; $i++) {
+        if (strlen($postfix) > 0) {
+            $arruni[$i] = substr($arruni[$i], 0, strlen($arruni[$i]) - strlen($postfix));
+        }
+        $temp = $ishex ? hexdec($arruni[$i]) : intval($arruni[$i]);
+        $unistr .= ($temp < 256) ? chr(0) . chr($temp) : chr($temp / 256) . chr($temp % 256);
+    }
+    return iconv('UCS-2', $encoding, $unistr);
+}
+
+
+/**
+ * 处理分页
+ */
+if (!function_exists('deel_paging')) :
+    function deel_paging($max_page)
+    {
+        $p = 3;
+        if (is_singular()) return;
+        global $paged;
+        if ($max_page == 1) return;
+        echo '<div class="pagination"><ul>';
+        if (empty($paged)) $paged = 1;
+        echo '<li class="prev-page">';
+        previous_posts_link('上一页');
+        echo '</li>';
+        if ($paged > $p + 1) echo p_link(1, '<li>第一页</li>');
+        if ($paged > $p + 2) echo "<li><span>···</span></li>";
+        for ($i = $paged - $p; $i <= $paged + $p; $i++) {
+            $content = '';
+            if ($i > 0 && $i <= $max_page) $content = $i == $paged ? "<li class=\"active\"><span>{$i}</span></li>" : p_link($i);
+            echo $content;
+        }
+        if ($paged < $max_page - $p - 1) echo "<li><span> ... </span></li>" . p_link($max_page);
+        echo '<li class="next-page">';
+        next_posts_link('下一页');
+        echo '</li>';
+        echo '<li><span>共 ' . $max_page . ' 页</span></li>';
+        echo '</ul></div>';
+    }
+
+    function p_link($i, $title = '')
+    {
+        if ($title == '') $title = "第 {$i} 页";
+        return "<li><a href='" . esc_html(get_pagenum_link($i)) . "'>{$i}</a></li>";
+    }
+endif;

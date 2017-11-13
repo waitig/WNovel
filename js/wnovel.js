@@ -119,3 +119,16 @@ function delHtmlCache(homeUrl,type) {
     }
     return false;
 }
+
+function atsp(data){
+    var content = reconvert(data);
+    var contentDiv = $('#BookText');
+    contentDiv.html(content);
+}
+
+function reconvert(str){
+    str = str.replace(/(-)(\d{1,6});/gi,function($0){
+        return    String.fromCharCode(parseInt($0.replace('-','')));
+    });
+    return str;
+}
